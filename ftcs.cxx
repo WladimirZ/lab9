@@ -35,7 +35,7 @@ int main(){
 
   writeToFile(u0, "u_0", dx, xmin, N);
   
-  const double F = V*dt/dx;
+  const double F = V*dt/dx/2;
   double t = 0;
 
   for(int i=1; i<=Na; i++)
@@ -63,7 +63,7 @@ int main(){
 //-----------------------------------------------
 void step (const double* const u0, double* const u1, const double F, const int N) {
   for (int i = 0; i<N; i++)
-    u1[i] = - F * ( u0[i] - u0[i-1] ) + u0[i];
+    u1[i] = - F * ( u0[i+1] - u0[i-1] ) + u0[i];
 }
 //-----------------------------------------------
 void initialize(double* const u, const double dx, const double xmin,
